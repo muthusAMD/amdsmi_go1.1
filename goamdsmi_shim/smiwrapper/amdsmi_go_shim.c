@@ -333,8 +333,8 @@ uint32_t goamdsmi_cpu_threads_per_core_get()
 uint32_t goamdsmi_cpu_number_of_threads_get()
 {
     uint32_t number_of_threads    = GOAMDSMI_VALUE_0;
-    uint32_t num_threads_per_core = GOAMDSMI_VALUE_0;
-    if(GOAMDSMI_STATUS_SUCCESS == goamdsmi_cpu_threads_per_core_get(&num_threads_per_core))
+    uint32_t num_threads_per_core = goamdsmi_cpu_threads_per_core_get();
+    if(0 != num_threads_per_core)
     {
         number_of_threads = num_cpu_physicalCore_inAllSocket*num_threads_per_core;
         if (enable_debug_level(GOAMDSMI_DEBUG_LEVEL_1)) {printf("AMDSMI, Success, CpuNumThreads:%lu\n", (unsigned long)(number_of_threads));}
