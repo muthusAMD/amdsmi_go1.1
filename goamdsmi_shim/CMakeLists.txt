@@ -17,7 +17,7 @@ set(AMDSMI_DIR "" CACHE PATH "path to amdsmi installation")
 if(WITH_AMDSMI)
 add_definitions(-DAMDSMI_BUILD)
 add_definitions(-DENABLE_ESMI_LIB)
-include(deps/SetupAmdsmi.cmake)
+#include(deps/SetupAmdsmi.cmake)
 endif()
 
 if(ENABLE_DEBUG_LEVEL)
