@@ -6,9 +6,9 @@
 #
 cmake_minimum_required(VERSION 3.5.0)
 
-message("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+message("*******************************************************************")
 message("                  CMake AMD goamdsmi_shim Library                  ")
-message("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+message("*******************************************************************")
 
 option(WITH_AMDSMI       "Support unified cpu and gpu"		ON)
 
@@ -24,7 +24,7 @@ if(ENABLE_DEBUG_LEVEL)
 add_definitions(-DENABLE_DEBUG_LEVEL=${ENABLE_DEBUG_LEVEL})
 message("**** Enabling Debug Level=${ENABLE_DEBUG_LEVEL} ****")
 else()
-add_definitions(-DENABLE_DEBUG_LEVEL=3)
+add_definitions(-DENABLE_DEBUG_LEVEL=0)
 endif()
 
 set(GOAMDSMI_SHIM "goamdsmi_shim")
@@ -112,6 +112,7 @@ target_link_libraries(${GOAMDSMI_SHIM_TARGET} pthread rt m)
 if(WITH_AMDSMI)
     target_link_libraries(${GOAMDSMI_SHIM_TARGET} amd_smi)
     target_link_libraries(${GOAMDSMI_SHIM_TARGET} -L${AMDSMI_DIR}/lib)
+    target_link_libraries(${GOAMDSMI_SHIM_TARGET} -L${AMDSMI_DIR}/lib64)
 endif()
 
 ## Set the VERSION and SOVERSION values
